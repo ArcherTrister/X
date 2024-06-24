@@ -1,0 +1,39 @@
+name: "Build and push nuget package"
+
+on:
+  workflow_dispatch:
+    inputs:
+      packageVersion:
+        description: "Package Version"
+        required: true
+        type: string
+
+env:
+  NUGET_REGISTRY: http://220.165.143.67:8081/repository/nuget-hosted/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo build and push config info
+        run: |
+          echo "Nuget registry: $Nuget_Registry"
+          echo "Package version: $Package_Version"
+        env:
+          Nuget_Registry: ${{ env.NUGET_REGISTRY }}
+          Package_Version: ${{ inputs.packageVersion }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install dotnet tool
+        run: dotnet tool install -g dotnetCampus.TagToVersion
+      - name: Set tag to version  
+        run: dotnet TagToVersion -t ${{ inputs.packageVersion }}
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+      - name: Install Nuget
+        uses: nuget/setup-nuget@v1
+        with:        
+          nuget-version: '5.x'
+      - name: Push package to Nexus registry
+        run: |
+          nuget push .\bin\release\*.nupkg -Source ${{ env.NUGET_REGISTRY }} -SkipDuplicate -ApiKey ${ { secrets.NexusNugetKey } } -NoSymbols 
