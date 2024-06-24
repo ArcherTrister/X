@@ -1,4 +1,4 @@
-name: "Build and push nuget package"
+name: "Build and push package with nexus"
 
 on:
   workflow_dispatch:
