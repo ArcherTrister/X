@@ -1,0 +1,23 @@
+﻿@page
+@model X.Captcha.Demo.Pages.GCaptchaV2Checkbox
+@{
+    ViewData["Title"] = "G-CaptchaV2-Checkbox";
+}
+
+<pre>@Model.Result</pre>
+
+<g-captcha-v2-script />
+
+<form method="POST">
+    <input id="token" name="token" type="text" />
+    <input id="submit" type="submit" value="submit" disabled="disabled" />
+</form>
+
+<script>
+    function callback(token) {
+        document.getElementById("token").value = token;
+        document.getElementById("submit").disabled = false;
+    }
+</script>
+
+<g-captcha-v2-div callback="callback" />

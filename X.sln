@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{158715A0-73B8-47A7-9253-3E7D73195241}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Swashbuckle", "src\X.Swashbuckle\X.Swashbuckle.csproj", "{8F4AE970-7262-49DF-BB74-6FE6BCA07D56}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.EntityFrameworkCore.DataEncryption", "src\X.EntityFrameworkCore.DataEncryption\X.EntityFrameworkCore.DataEncryption.csproj", "{4EDF6F5D-5CF3-4429-A918-9E67E4583304}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Captcha", "src\X.Captcha\X.Captcha.csproj", "{91ABD286-600C-4F3B-AB05-735E23C34B7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{B93C5D30-2546-426F-A269-6834B0CE170B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		common.DotSettings = common.DotSettings
+		common.props = common.props
+		configureawait.props = configureawait.props
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		stylecop.json = stylecop.json
+		X.DotSettings = X.DotSettings
+		X.ruleset = X.ruleset
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{0841AC5D-07F7-4B24-BE81-03799CAC6B19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Captcha.Demo", "demos\X.Captcha.Demo\X.Captcha.Demo.csproj", "{2399411E-5FC4-4503-B277-5FFEAB201484}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.EntityFrameworkCore.DataEncryption.Demo", "demos\X.EntityFrameworkCore.DataEncryption.Demo\X.EntityFrameworkCore.DataEncryption.Demo.csproj", "{8507B89D-9F2D-464D-88D3-952FE7659A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Swashbuckle.Demo", "demos\X.Swashbuckle.Demo\X.Swashbuckle.Demo.csproj", "{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F4AE970-7262-49DF-BB74-6FE6BCA07D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4AE970-7262-49DF-BB74-6FE6BCA07D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4AE970-7262-49DF-BB74-6FE6BCA07D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4AE970-7262-49DF-BB74-6FE6BCA07D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EDF6F5D-5CF3-4429-A918-9E67E4583304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDF6F5D-5CF3-4429-A918-9E67E4583304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDF6F5D-5CF3-4429-A918-9E67E4583304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDF6F5D-5CF3-4429-A918-9E67E4583304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91ABD286-600C-4F3B-AB05-735E23C34B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91ABD286-600C-4F3B-AB05-735E23C34B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91ABD286-600C-4F3B-AB05-735E23C34B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91ABD286-600C-4F3B-AB05-735E23C34B7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2399411E-5FC4-4503-B277-5FFEAB201484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2399411E-5FC4-4503-B277-5FFEAB201484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2399411E-5FC4-4503-B277-5FFEAB201484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2399411E-5FC4-4503-B277-5FFEAB201484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8507B89D-9F2D-464D-88D3-952FE7659A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8507B89D-9F2D-464D-88D3-952FE7659A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8507B89D-9F2D-464D-88D3-952FE7659A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8507B89D-9F2D-464D-88D3-952FE7659A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F4AE970-7262-49DF-BB74-6FE6BCA07D56} = {158715A0-73B8-47A7-9253-3E7D73195241}
+		{4EDF6F5D-5CF3-4429-A918-9E67E4583304} = {158715A0-73B8-47A7-9253-3E7D73195241}
+		{91ABD286-600C-4F3B-AB05-735E23C34B7E} = {158715A0-73B8-47A7-9253-3E7D73195241}
+		{2399411E-5FC4-4503-B277-5FFEAB201484} = {0841AC5D-07F7-4B24-BE81-03799CAC6B19}
+		{8507B89D-9F2D-464D-88D3-952FE7659A9D} = {0841AC5D-07F7-4B24-BE81-03799CAC6B19}
+		{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680} = {0841AC5D-07F7-4B24-BE81-03799CAC6B19}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BD16C26-7607-461B-8C23-A1E01C10AC41}
+	EndGlobalSection
+EndGlobal

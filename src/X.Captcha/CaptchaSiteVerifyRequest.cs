@@ -1,0 +1,12 @@
+﻿// Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+// See https://github.com/ArcherTrister/XCaptcha
+// for more information concerning the license and the contributors participating to this project.
+
+namespace X.Captcha;
+
+public class CaptchaSiteVerifyRequest
+{
+    public string Response { get; set; }
+
+    public string RemoteIp { get; set; }
+}

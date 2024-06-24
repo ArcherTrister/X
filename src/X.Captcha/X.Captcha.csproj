@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <Import Project="..\..\configureawait.props" />
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <RootNamespace>X.Captcha</RootNamespace>
+    <PackageId>X.Captcha</PackageId>
+    <Description>reCaptcha,hCaptcha,lCaptcha,gCaptcha for ASP NET Core</Description>
+    <IsPackable>true</IsPackable>
+    <OutputType>Library</OutputType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>

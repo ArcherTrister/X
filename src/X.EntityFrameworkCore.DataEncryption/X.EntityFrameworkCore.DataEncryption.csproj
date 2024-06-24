@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\configureawait.props" />
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <RootNamespace>X.EntityFrameworkCore.DataEncryption</RootNamespace>
+    <PackageId>X.EntityFrameworkCore.DataEncryption</PackageId>
+    <Description>Field Encryption for EntityFrameworkCore</Description>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+</Project>

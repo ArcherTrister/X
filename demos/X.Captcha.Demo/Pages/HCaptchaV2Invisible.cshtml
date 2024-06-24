@@ -1,0 +1,22 @@
+@page
+@model X.Captcha.Demo.Pages.HCaptchaV2Invisible
+@{
+    ViewData["Title"] = "HCaptcha-V2-Invisible";
+}
+
+<pre>@Model.Result</pre>
+
+<script>
+    function callback(token) {
+        document.getElementById("token").value = token;
+        document.getElementById("demo-form").submit();
+    }
+</script>
+
+<h-captcha-v2-script  />
+
+<form id="demo-form" method="POST">
+    <input id="token" name="token" type="text" />
+    <button h-captcha-v2-callback="callback" h-captcha-v2-size="normal">Click Verify</button>
+</form>
+

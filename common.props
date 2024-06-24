@@ -1,0 +1,49 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Version>1.8.0</Version>
+    <PackageVersion>1.8.0</PackageVersion>
+    <NoWarn>$(NoWarn);CS1591;CS0436;CA1305</NoWarn>
+    <Authors>ArcherTrister</Authors>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <NeutralLanguage>zh-Hans</NeutralLanguage>
+    <Copyright>Copyright © 2016-2024 LX Incorporated. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://archertrister.github.io/</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ArcherTrister/X</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Include symbol files (*.pdb) in the built .nupkg -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)X.snk</AssemblyOriginatorKeyFile>
+    <PackageIcon>x_nupkg.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\x_nupkg.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+	<!--<Target Name="NoWarnOnRazorViewImportedTypeConflicts" BeforeTargets="RazorCoreCompile">
+		<PropertyGroup>
+			<NoWarn>$(NoWarn);0436</NoWarn>
+		</PropertyGroup>
+	</Target>-->
+</Project>

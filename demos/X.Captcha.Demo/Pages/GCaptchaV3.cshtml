@@ -1,0 +1,23 @@
+@page
+@model X.Captcha.Demo.Pages.GCaptchaV3
+@{
+    ViewData["Title"] = "G-Captcha-V3";
+}
+
+<pre>@Model.Result</pre>
+
+<form method="POST">
+    <input id="token" name="token" type="text" />
+    <input id="submit" type="submit" value="submit" disabled="disabled" />
+</form>
+
+
+<script>
+    function callback(token) {
+        document.getElementById("token").value = token;
+        document.getElementById("submit").disabled = false;
+    }
+</script>
+
+<g-captcha-v3-script />
+<g-captcha-v3-script-js action="login" callback="callback" />

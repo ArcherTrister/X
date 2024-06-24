@@ -1,0 +1,25 @@
+@page
+@model X.Captcha.Demo.Pages.ReCaptchaV3Programmatically
+@{
+    ViewData["Title"] = "Re-Captcha-V3-Programmatically";
+}
+
+<pre>@Model.Result</pre>
+
+<form method="POST" id="recaptchaForm">
+    <input id="token" name="token" type="text" />
+    <input id="submitBtn" type="submit" value="submit" />
+</form>
+
+<script>
+    document.getElementById("submitBtn").onclick = function(e) {
+        e.preventDefault();
+        grecaptcha.reExecute(function(token) {
+            document.getElementById("token").value = token;
+            document.getElementById("recaptchaForm").submit();
+        })
+    };
+</script>
+
+<re-captcha-v3-script />
+<re-captcha-v3-script-js action="login" execute="false" />

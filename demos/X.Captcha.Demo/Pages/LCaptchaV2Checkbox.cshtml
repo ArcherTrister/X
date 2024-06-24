@@ -1,0 +1,24 @@
+﻿@page
+@model X.Captcha.Demo.Pages.LCaptchaV2CheckboxModel
+@{
+    ViewData["Title"] = "LCaptcha-V2-Checkbox";
+}
+
+<pre>@Model.Result</pre>
+
+<l-captcha-v2-script />
+
+<form method="POST">
+    <input id="token" name="token" type="text" />
+    <input id="submit" type="submit" value="submit" disabled="disabled" />
+</form>
+
+<script>
+    function callback(token) {
+        document.getElementById("token").value = token;
+        document.getElementById("submit").disabled = false;
+    }
+</script>
+
+<l-captcha-v2-div callback="callback" />
+

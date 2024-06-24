@@ -1,0 +1,22 @@
+@page
+@model X.Captcha.Demo.Pages.ReCaptchaV2Invisible
+@{
+    ViewData["Title"] = "Re-CaptchaV2-Invisible";
+}
+
+<pre>@Model.Result</pre>
+
+<script>
+    function callback(token) {
+        document.getElementById("token").value = token;
+        document.getElementById("demo-form").submit();
+    }
+</script>
+
+<re-captcha-v2-script />
+
+<form id="demo-form" method="POST">
+    <input id="token" name="token" type="text" />
+    <button re-captcha-v2-callback="callback" re-captcha-v2-size="invisible">Click Verify</button>
+</form>
+
