@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace X.EntityFrameworkCore.DataEncryption.Demo;
+namespace X.EntityFrameworkCore.FieldEncryption.Demo;
 
 public class FluentUserEntity
 {

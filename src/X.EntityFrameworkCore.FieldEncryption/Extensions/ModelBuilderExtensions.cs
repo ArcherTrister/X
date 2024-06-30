@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-using X.EntityFrameworkCore.DataEncryption;
+using X.EntityFrameworkCore.FieldEncryption;
 
 namespace Microsoft.EntityFrameworkCore;
 

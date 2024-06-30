@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-using X.EntityFrameworkCore.DataEncryption;
+using X.EntityFrameworkCore.FieldEncryption;
 
 namespace Microsoft.EntityFrameworkCore.DataEncryption.Internal;
 

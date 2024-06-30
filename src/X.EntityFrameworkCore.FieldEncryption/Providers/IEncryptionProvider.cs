@@ -2,7 +2,7 @@
 // See https://github.com/ArcherTrister/xabp
 // for more information concerning the license and the contributors participating to this project.
 
-namespace X.EntityFrameworkCore.DataEncryption;
+namespace X.EntityFrameworkCore.FieldEncryption;
 
 /// <summary>
 /// Provides a mechanism to encrypt and decrypt data.

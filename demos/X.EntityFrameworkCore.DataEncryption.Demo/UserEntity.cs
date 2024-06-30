@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace X.EntityFrameworkCore.DataEncryption.Demo;
+namespace X.EntityFrameworkCore.FieldEncryption.Demo;
 
 public class UserEntity
 {

@@ -37,7 +37,7 @@ jobs:
               with:
                   project-names: |
                       src/X.Captcha
-                      src/X.EntityFrameworkCore.DataEncryption
+                      src/X.EntityFrameworkCore.FieldEncryption
                       src/X.Swashbuckle
                   # NuGet Package Version
                   package-version: ${{ inputs.packageVersion }}

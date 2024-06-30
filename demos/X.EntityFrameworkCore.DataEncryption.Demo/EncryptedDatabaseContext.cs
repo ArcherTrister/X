@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace X.EntityFrameworkCore.DataEncryption.Demo;
+namespace X.EntityFrameworkCore.FieldEncryption.Demo;
 
 public class EncryptedDatabaseContext : DatabaseContext
 {

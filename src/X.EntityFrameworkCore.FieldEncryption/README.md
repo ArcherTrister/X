@@ -11,7 +11,7 @@ I **do not** take responsability if you use/deploy this in a production environm
 Install the package from [NuGet](https://www.nuget.org/) or from the `Package Manager Console` :
 
 ```powershell
-PM> Install-Package X.EntityFrameworkCore.DataEncryption
+PM> Install-Package X.EntityFrameworkCore.FieldEncryption
 ```
 
 ## Supported types
@@ -23,7 +23,7 @@ PM> Install-Package X.EntityFrameworkCore.DataEncryption
 
 ## How to use
 
-`X.EntityFrameworkCore.DataEncryption` supports 2 differents initialization methods:
+`X.EntityFrameworkCore.FieldEncryption` supports 2 differents initialization methods:
 * Attribute
 * Fluent configuration
 
@@ -68,7 +68,7 @@ public class DatabaseContext : DbContext
 	}
 }
 ```
-The code bellow creates a new [`AesProvider`](https://github.com/ArcherTrister/X.EntityFrameworkCore.DataEncryption/blob/main/src/EntityFrameworkCore.DataEncryption/Providers/AesProvider.cs) and gives it to the current model. It will encrypt every `string` fields of your model that has the `[Encrypted]` attribute when saving changes to database. As for the decrypt process, it will be done when reading the `DbSet<T>` of your `DbContext`.
+The code bellow creates a new [`AesProvider`](https://github.com/ArcherTrister/X.EntityFrameworkCore.FieldEncryption/blob/main/src/EntityFrameworkCore.DataEncryption/Providers/AesProvider.cs) and gives it to the current model. It will encrypt every `string` fields of your model that has the `[Encrypted]` attribute when saving changes to database. As for the decrypt process, it will be done when reading the `DbSet<T>` of your `DbContext`.
 
 ### Example with `AesProvider` and fluent configuration
 
@@ -112,7 +112,7 @@ public class DatabaseContext : DbContext
 
 ## Create an encryption provider
 
-`X.EntityFrameworkCore.DataEncryption` gives the possibility to create your own encryption providers. To do so, create a new class and make it inherit from `IEncryptionProvider`. You will need to implement the `Encrypt(string)` and `Decrypt(string)` methods.
+`X.EntityFrameworkCore.FieldEncryption` gives the possibility to create your own encryption providers. To do so, create a new class and make it inherit from `IEncryptionProvider`. You will need to implement the `Encrypt(string)` and `Decrypt(string)` methods.
 
 ```csharp
 public class MyCustomEncryptionProvider : IEncryptionProvider

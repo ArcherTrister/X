@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-using X.EntityFrameworkCore.DataEncryption.Providers;
+using X.EntityFrameworkCore.FieldEncryption.Providers;
 
-namespace X.EntityFrameworkCore.DataEncryption.Demo;
+namespace X.EntityFrameworkCore.FieldEncryption.Demo;
 
 internal class Program
 {

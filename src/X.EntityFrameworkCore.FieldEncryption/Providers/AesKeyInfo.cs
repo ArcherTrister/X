@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace X.EntityFrameworkCore.DataEncryption.Providers;
+namespace X.EntityFrameworkCore.FieldEncryption.Providers;
 
 /// <summary>
 /// Defines an AES key info structure containing a Key and Initialization Vector used for the AES encryption algorithm.

@@ -5,8 +5,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net8.0</TargetFrameworks>
-    <RootNamespace>X.EntityFrameworkCore.DataEncryption</RootNamespace>
-    <PackageId>X.EntityFrameworkCore.DataEncryption</PackageId>
+    <RootNamespace>X.EntityFrameworkCore.FieldEncryption</RootNamespace>
+    <PackageId>X.EntityFrameworkCore.FieldEncryption</PackageId>
     <Description>Field Encryption for EntityFrameworkCore</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>

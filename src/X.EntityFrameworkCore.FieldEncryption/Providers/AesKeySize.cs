@@ -1,4 +1,4 @@
-﻿namespace X.EntityFrameworkCore.DataEncryption.Providers;
+﻿namespace X.EntityFrameworkCore.FieldEncryption.Providers;
 
 /// <summary>
 /// Specifies the available AES Key sizes used for generating encryption keys and initialization vectors.
