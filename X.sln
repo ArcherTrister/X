@@ -23,8 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{B93C5D
 		Directory.Packages.props = Directory.Packages.props
 		.github\workflows\nexus.yml = .github\workflows\nexus.yml
 		stylecop.json = stylecop.json
-		X.DotSettings = X.DotSettings
 		Version.props = Version.props
+		X.DotSettings = X.DotSettings
 		X.ruleset = X.ruleset
 	EndProjectSection
 EndProject
@@ -32,11 +32,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{0841AC5D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Captcha.Demo", "demos\X.Captcha.Demo\X.Captcha.Demo.csproj", "{2399411E-5FC4-4503-B277-5FFEAB201484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.EntityFrameworkCore.DataEncryption.Demo", "demos\X.EntityFrameworkCore.DataEncryption.Demo\X.EntityFrameworkCore.DataEncryption.Demo.csproj", "{8507B89D-9F2D-464D-88D3-952FE7659A9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.EntityFrameworkCore.DataEncryption.Demo", "demos\X.EntityFrameworkCore.DataEncryption.Demo\X.EntityFrameworkCore.DataEncryption.Demo.csproj", "{8507B89D-9F2D-464D-88D3-952FE7659A9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Swashbuckle.Demo", "demos\X.Swashbuckle.Demo\X.Swashbuckle.Demo.csproj", "{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{14084CB4-B70F-4AB7-AE88-0F5ACAA344DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Swashbuckle.Demo", "demos\X.Swashbuckle.Demo\X.Swashbuckle.Demo.csproj", "{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

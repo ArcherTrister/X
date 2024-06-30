@@ -31,7 +31,7 @@ jobs:
             - name: Build and pack with dotnet
               # run: dotnet build --configuration Release
               run: |
-                  ./nuget-pack.ps1
+                  ./nupkg/nuget-pack.ps1
               shell: pwsh
             - name: publish nuget package
               uses: dansiegel/publish-nuget@v1.2

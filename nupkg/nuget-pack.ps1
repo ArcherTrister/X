@@ -1,21 +1,93 @@
-. ".\common.ps1"
+# Paths
+$packFolder = (Get-Item -Path "./" -Verbose).FullName
+$rootFolder = Join-Path $packFolder "../"
+
+function Write-Info {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]
+        $text
+    )
+
+    Write-Host $text -ForegroundColor Black -BackgroundColor Green
+
+    try {
+        $host.UI.RawUI.WindowTitle = $text
+    }
+    catch {
+        #Changing window title is not suppoerted!
+    }
+}
+
+function Write-Error {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]
+        $text
+    )
+
+    Write-Host $text -ForegroundColor Red -BackgroundColor Black
+}
+
+function Seperator {
+    Write-Host ("_" * 100)  -ForegroundColor gray
+}
+
+function Get-Current-Version {
+    $commonPropsFilePath = resolve-path "../common.props"
+    $commonPropsXmlCurrent = [xml](Get-Content $commonPropsFilePath )
+    $currentVersion = $commonPropsXmlCurrent.Project.PropertyGroup.Version.Trim()
+    return $currentVersion
+}
+
+function Get-Current-Branch {
+    return git branch --show-current
+}
+
+function Read-File {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]
+        $filePath
+    )
+
+    $pathExists = Test-Path -Path $filePath -PathType Leaf
+    if ($pathExists) {
+        return Get-Content $filePath
+    }
+    else {
+        Write-Error  "$filePath path does not exist!"
+    }
+}
+
+# List of solutions
+$solutions = (
+    "src/X.Captcha",
+    "src/X.EntityFrameworkCore.DataEncryption",
+    "src/X.Swashbuckle"
+)
+
+# List of projects
+$projects = (
+    "src/X.Captcha",
+    "src/X.EntityFrameworkCore.DataEncryption",
+    "src/X.Swashbuckle"
+)
+
+
+Write-Info "Creating NuGet packages"
 
 echo "`n-----=====[ CREATING NUGET PACKAGES ]=====-----`n"
 
-# Delete old packages
+# Delete existing nupkg files
 del *.nupkg
-# Get-ChildItem * -include *.nupkg -recurse | Remove-Item
 
 # Rebuild all solutions
-# foreach($solution in $solutions) {
-#     $solutionFolder = Join-Path $rootFolder $solution
-#     Write-Info $solutionFolder
-#     Set-Location $solutionFolder
-#     dotnet restore
-# }
-
-# Write-Host 'Press Any Key!' -NoNewline
-# $null = [Console]::ReadKey('?')
+foreach ($solution in $solutions) {
+    $solutionFolder = Join-Path $rootFolder $solution
+    Set-Location $solutionFolder
+    dotnet restore
+}
 
 # Create all packages
 $i = 0
@@ -30,21 +102,10 @@ foreach ($project in $projects) {
     # Create nuget pack
     Write-Info "[$i / $projectsCount] - Packing project: $projectName"
     Set-Location $projectFolder
-    dotnet clean
 
-    dotnet pack -c Release
-
-    # dotnet build -c Release
-    # Write-Info $PSScriptRoot
-    # $releasePath = Join-Path $projectFolder ("/bin/Release")
-    # $frameworks = Get-ChildItem $releasePath | ?{$_.psiscontainer -eq $true}
-    # $projectDll = Join-Path $projectFolder ("/bin/Release/" + $frameworks[0] + "/" + $projectName + ".dll")
-    # $protectedDll = Join-Path $projectFolder ("/bin/Release/" + $frameworks[0] + "/" + $projectName + "_Secure/" + $projectName + "*.*")
-    # $projectPath = Join-Path $projectFolder ("/bin/Release/" + $frameworks[0] + "/")
-    # dotNET_Reactor.Console.exe -file $projectDll -anti_debug 1 -hide_calls 1 -hide_calls_internals 1 -control_flow_obfuscation 1 -flow_level 9 -virtualization 1 -necrobit 1 -necrobit_comp 1 -short_strings 1 -all_params 1 -showloadscreen 0 -q
-    # Start-Sleep -s 3
-    # Copy-Item -Force $protectedDll $projectPath
-    # dotnet pack -c Release --no-build
+    dotnet build -c Release
+    #dotnet clean
+    dotnet pack -c Release --no-build -- /maxcpucount
 
     if (-Not $?) {
         Write-Error "Packaging failed for the project: $projectName"
@@ -54,7 +115,6 @@ foreach ($project in $projects) {
     # Move nuget package
     $projectName = $project.Substring($project.LastIndexOf("/") + 1)
     $projectPackPath = Join-Path $projectFolder ("/bin/Release/" + $projectName + ".*.nupkg")
-    Write-Info $projectPackPath
     Move-Item -Force $projectPackPath $packFolder
 
     Seperator
@@ -64,3 +124,6 @@ foreach ($project in $projects) {
 Set-Location $packFolder
 
 echo "`n-----=====[ CREATING NUGET PACKAGES COMPLETED ]=====-----`n"
+
+Write-Info "Completed: Creating NuGet packages"
+cd ..\nupkg #always return to the nupkg directory
