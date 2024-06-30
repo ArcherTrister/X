@@ -24,15 +24,17 @@ jobs:
                   Package_Version: ${{ inputs.packageVersion }}
             - name: Checkout
               uses: actions/checkout@v3
+            - name: Setup PowerShell
+              uses: microsoft/setup-powershell@v1
             - name: Install dotnet tool
               run: dotnet tool install -g dotnetCampus.TagToVersion
             - name: Set tag to version
               run: dotnet TagToVersion -t ${{ inputs.packageVersion }} -f Version.props
             - name: Build and pack with dotnet
               # run: dotnet build --configuration Release
+              shell: pwsh
               run: |
                   ./nupkg/nuget-pack.ps1
-              shell: pwsh
             - name: publish nuget package
               uses: dansiegel/publish-nuget@v1.2
               with:
