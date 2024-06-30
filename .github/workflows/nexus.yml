@@ -24,6 +24,14 @@ jobs:
                   Package_Version: ${{ inputs.packageVersion }}
             - name: Checkout
               uses: actions/checkout@v3
+            - name: Install dotnet tool
+              run: dotnet tool install -g dotnetCampus.TagToVersion
+            - name: Set tag to version
+              run: dotnet TagToVersion -t ${{ inputs.packageVersion }} -f Version.props
+            - name: Build with dotnet
+              run: dotnet build --configuration Release
+            #- name: Build
+              #run: dotnet build --configuration Release /p:Version=${VERSION}
             - name: Create Nuget Packages
               uses: EasyDesk/action-dotnet-pack@v1.0.3
               with:
@@ -31,8 +39,15 @@ jobs:
                       src/X.Captcha
                       src/X.EntityFrameworkCore.DataEncryption
                   # NuGet Package Version
-                  package-version: ${{ inputs.packageVersion }}
+                  # package-version: ${{ inputs.packageVersion }}
                   output-dir: "./nupkg"
+            - name: Push Nuget Packages
+              uses: EasyDesk/action-nuget-push@v1.0.0
+              with:
+                  nuget-url: ${{ env.NUGET_REGISTRY }}
+                  # The Nuget API key.
+                  nuget-api-key: ${{ secrets.NexusNugetKey }}
+                  publish-dir: "./nupkg"
             # - name: Setup PowerShell
             #   uses: microsoft/setup-powershell@v1
             # - name: Install dotnet tool
