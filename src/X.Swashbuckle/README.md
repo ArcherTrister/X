@@ -2,11 +2,11 @@
 
 public enum EnumSample
 {
-    [Description("老大")]
+    [Description("鑰佸ぇ")]
     One = 1,
-    [Description("老二")]
+    [Description("鑰佷簩")]
     Two = 2,
-    [Description("老三")]
+    [Description("鑰佷笁")]
     Three = 3
 }
 
