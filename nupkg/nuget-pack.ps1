@@ -60,13 +60,6 @@ function Read-File {
     }
 }
 
-# List of solutions
-$solutions = (
-    "src/X.Captcha",
-    "src/X.EntityFrameworkCore.DataEncryption",
-    "src/X.Swashbuckle"
-)
-
 # List of projects
 $projects = (
     "src/X.Captcha",
@@ -81,13 +74,6 @@ echo "`n-----=====[ CREATING NUGET PACKAGES ]=====-----`n"
 
 # Delete existing nupkg files
 del *.nupkg
-
-# Rebuild all solutions
-foreach ($solution in $solutions) {
-    $solutionFolder = Join-Path $rootFolder $solution
-    Set-Location $solutionFolder
-    dotnet restore
-}
 
 # Create all packages
 $i = 0
