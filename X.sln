@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.EntityFrameworkCore.DataE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Swashbuckle.Demo", "demos\X.Swashbuckle.Demo\X.Swashbuckle.Demo.csproj", "{8B27CE3E-B8B2-45D1-8A01-021C9ECD8680}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{14084CB4-B70F-4AB7-AE88-0F5ACAA344DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
