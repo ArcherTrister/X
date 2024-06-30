@@ -39,7 +39,7 @@ jobs:
                       src/X.Captcha
                       src/X.EntityFrameworkCore.DataEncryption
                   # NuGet Package Version
-                  # package-version: ${{ inputs.packageVersion }}
+                  package-version: ${{ inputs.packageVersion }}
                   output-dir: "./nupkg"
             - name: Push Nuget Packages
               uses: EasyDesk/action-nuget-push@v1.0.0
