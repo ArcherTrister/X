@@ -20,10 +20,10 @@ internal class Program
             .Options;
 
         // AES key randomly generated at each run.
-        AesKeyInfo keyInfo = AesProvider.GenerateKey(AesKeySize.AES256Bits);
+        AesKeyInfo keyInfo = AesFieldEncryptionProvider.GenerateKey(AesKeySize.AES256Bits);
         byte[] encryptionKey = keyInfo.Key;
         byte[] encryptionIV = keyInfo.IV;
-        var encryptionProvider = new AesProvider(encryptionKey, encryptionIV);
+        var encryptionProvider = new AesFieldEncryptionProvider(encryptionKey, encryptionIV);
 
         using (var context = new DatabaseContext(options, encryptionProvider))
         {

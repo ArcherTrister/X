@@ -7,7 +7,7 @@ namespace X.EntityFrameworkCore.FieldEncryption;
 /// <summary>
 /// Provides a mechanism to encrypt and decrypt data.
 /// </summary>
-public interface IEncryptionProvider
+public interface IFieldEncryptionProvider
 {
     string Decrypt(string cipherText);
 

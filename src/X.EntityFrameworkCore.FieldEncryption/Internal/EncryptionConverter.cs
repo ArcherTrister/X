@@ -21,25 +21,25 @@ internal sealed class EncryptionConverter<TModel, TProvider> : ValueConverter<TM
     /// <summary>
     /// Creates a new <see cref="EncryptionConverter{TModel,TProvider}"/> instance.
     /// </summary>
-    /// <param name="encryptionProvider">Encryption provider to use.</param>
+    /// <param name="fieldEncryptionProvider">Encryption provider to use.</param>
     /// <param name="storageFormat">Encryption storage format.</param>
     /// <param name="mappingHints">Mapping hints.</param>
-    public EncryptionConverter(IEncryptionProvider encryptionProvider, StorageFormat storageFormat, ConverterMappingHints mappingHints = null)
+    public EncryptionConverter(IFieldEncryptionProvider fieldEncryptionProvider, StorageFormat storageFormat, ConverterMappingHints mappingHints = null)
         : base(
-            x => Encrypt<TModel, TProvider>(x, encryptionProvider, storageFormat),
-            x => Decrypt<TModel, TProvider>(x, encryptionProvider, storageFormat),
+            x => Encrypt<TModel, TProvider>(x, fieldEncryptionProvider, storageFormat),
+            x => Decrypt<TModel, TProvider>(x, fieldEncryptionProvider, storageFormat),
             mappingHints)
     {
     }
 
-    private static TOutput Encrypt<TInput, TOutput>(TModel input, IEncryptionProvider encryptionProvider, StorageFormat storageFormat)
+    private static TOutput Encrypt<TInput, TOutput>(TModel input, IFieldEncryptionProvider fieldEncryptionProvider, StorageFormat storageFormat)
     {
         try
         {
             object encryptedData = storageFormat switch
             {
-                StorageFormat.Base64 => encryptionProvider.Encrypt(input.ToString()),
-                _ => encryptionProvider.Encrypt(input as byte[]),
+                StorageFormat.Base64 => fieldEncryptionProvider.Encrypt(input.ToString()),
+                _ => fieldEncryptionProvider.Encrypt(input as byte[]),
             };
             return (TOutput)Convert.ChangeType(encryptedData, typeof(TOutput));
         }
@@ -49,14 +49,14 @@ internal sealed class EncryptionConverter<TModel, TProvider> : ValueConverter<TM
         }
     }
 
-    private static TModel Decrypt<TInput, TOupout>(TProvider input, IEncryptionProvider encryptionProvider, StorageFormat storageFormat)
+    private static TModel Decrypt<TInput, TOupout>(TProvider input, IFieldEncryptionProvider fieldEncryptionProvider, StorageFormat storageFormat)
     {
         try
         {
             object decryptedData = storageFormat switch
             {
-                StorageFormat.Base64 => encryptionProvider.Decrypt(input.ToString()),
-                _ => encryptionProvider.Decrypt(input as byte[]),
+                StorageFormat.Base64 => fieldEncryptionProvider.Decrypt(input.ToString()),
+                _ => fieldEncryptionProvider.Decrypt(input as byte[]),
             };
 
             return (TModel)Convert.ChangeType(decryptedData, typeof(TModel));

@@ -4,16 +4,16 @@ namespace X.EntityFrameworkCore.FieldEncryption.Demo;
 
 public class DatabaseContext : DbContext
 {
-    private readonly IEncryptionProvider _encryptionProvider;
+    private readonly IFieldEncryptionProvider _fieldEncryptionProvider;
 
     public DbSet<FluentUserEntity> FluentUsers { get; set; }
 
     public DbSet<UserEntity> Users { get; set; }
 
-    public DatabaseContext(DbContextOptions<DatabaseContext> options, IEncryptionProvider encryptionProvider)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options, IFieldEncryptionProvider fieldEncryptionProvider)
         : base(options)
     {
-        _encryptionProvider = encryptionProvider;
+        _fieldEncryptionProvider = fieldEncryptionProvider;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,9 +30,9 @@ public class DatabaseContext : DbContext
             b.Property(x => x.EncryptedDataAsString).IsRequired().HasColumnType("TEXT").IsEncrypted();
         });
 
-        if (_encryptionProvider is not null)
+        if (_fieldEncryptionProvider is not null)
         {
-            modelBuilder.UseEncryption(_encryptionProvider);
+            modelBuilder.UseEncryption(_fieldEncryptionProvider);
         }
 
         base.OnModelCreating(modelBuilder);

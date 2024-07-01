@@ -8,7 +8,7 @@ namespace X.EntityFrameworkCore.FieldEncryption.Providers;
 /// <summary>
 /// Implements the Advanced Encryption Standard (AES) symmetric algorithm.
 /// </summary>
-public class AesProvider : IEncryptionProvider
+public class AesFieldEncryptionProvider : IFieldEncryptionProvider
 {
     /// <summary>
     /// AES block size constant.
@@ -26,13 +26,13 @@ public class AesProvider : IEncryptionProvider
     private readonly PaddingMode _padding;
 
     /// <summary>
-    /// Creates a new <see cref="AesProvider"/> instance used to perform symmetric encryption and decryption on strings.
+    /// Creates a new <see cref="AesFieldEncryptionProvider"/> instance used to perform symmetric encryption and decryption on strings.
     /// </summary>
     /// <param name="key">AES key used for the symmetric encryption.</param>
     /// <param name="initializationVector">AES Initialization Vector used for the symmetric encryption.</param>
     /// <param name="mode">Mode for operation used in the symmetric encryption.</param>
     /// <param name="padding">Padding mode used in the symmetric encryption.</param>
-    public AesProvider(byte[] key, byte[] initializationVector, CipherMode mode = CipherMode.CBC, PaddingMode padding = PaddingMode.PKCS7)
+    public AesFieldEncryptionProvider(byte[] key, byte[] initializationVector, CipherMode mode = CipherMode.CBC, PaddingMode padding = PaddingMode.PKCS7)
     {
         _key = key ?? throw new ArgumentNullException(nameof(key), "");
         _iv = initializationVector ?? throw new ArgumentNullException(nameof(initializationVector), "");

@@ -29,22 +29,22 @@ public static class ModelBuilderExtensions
     /// <param name="modelBuilder">
     /// The <see cref="ModelBuilder"/> instance.
     /// </param>
-    /// <param name="encryptionProvider">
-    /// The <see cref="IEncryptionProvider"/> to use, if any.
+    /// <param name="fieldEncryptionProvider">
+    /// The <see cref="IFieldEncryptionProvider"/> to use, if any.
     /// </param>
     /// <returns>
     /// The updated <paramref name="modelBuilder"/>.
     /// </returns>
-    public static ModelBuilder UseEncryption(this ModelBuilder modelBuilder, IEncryptionProvider encryptionProvider)
+    public static ModelBuilder UseEncryption(this ModelBuilder modelBuilder, IFieldEncryptionProvider fieldEncryptionProvider)
     {
         if (modelBuilder is null)
         {
             throw new ArgumentNullException(nameof(modelBuilder));
         }
 
-        if (encryptionProvider is null)
+        if (fieldEncryptionProvider is null)
         {
-            throw new ArgumentNullException(nameof(encryptionProvider));
+            throw new ArgumentNullException(nameof(fieldEncryptionProvider));
         }
 
         foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
@@ -60,7 +60,7 @@ public static class ModelBuilderExtensions
                 }
 #pragma warning restore EF1001 // Internal EF Core API usage.
 
-                ValueConverter converter = GetValueConverter(encryptedProperty.Property.ClrType, encryptionProvider);
+                ValueConverter converter = GetValueConverter(encryptedProperty.Property.ClrType, fieldEncryptionProvider);
 
                 if (converter != null)
                 {
@@ -72,15 +72,15 @@ public static class ModelBuilderExtensions
         return modelBuilder;
     }
 
-    private static ValueConverter GetValueConverter(Type propertyType, IEncryptionProvider encryptionProvider)
+    private static ValueConverter GetValueConverter(Type propertyType, IFieldEncryptionProvider fieldEncryptionProvider)
     {
         if (propertyType == typeof(string))
         {
-            return new EncryptionConverter<string, string>(encryptionProvider, StorageFormat.Base64);
+            return new EncryptionConverter<string, string>(fieldEncryptionProvider, StorageFormat.Base64);
         }
         else if (propertyType == typeof(byte[]))
         {
-            return new EncryptionConverter<byte[], byte[]>(encryptionProvider, StorageFormat.Binary);
+            return new EncryptionConverter<byte[], byte[]>(fieldEncryptionProvider, StorageFormat.Binary);
         }
 
         throw new NotImplementedException($"Type {propertyType.Name} does not support encryption.");
