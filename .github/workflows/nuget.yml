@@ -14,6 +14,9 @@ env:
 jobs:
     build:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                dotnet-version: [ '6.0.x', '8.0.x', '9.0.x' ]
         steps:
             - name: Echo build and push config info
               run: |
@@ -24,6 +27,12 @@ jobs:
                   Package_Version: ${{ inputs.packageVersion }}
             - name: Checkout
               uses: actions/checkout@v3
+            - name: Setup dotnet ${{ matrix.dotnet-version }}
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: ${{ matrix.dotnet-version }}
+            - name: Display dotnet version
+              run: dotnet --version
             - name: Build with dotnet
               run: dotnet build --configuration Release -p:Version=${{ inputs.packageVersion }}
             - name: Create Nuget Packages
