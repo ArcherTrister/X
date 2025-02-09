@@ -60,7 +60,7 @@ internal abstract class EnumHandleBase
     /// 0 : 值, 1 : 名称, 2 : 描述
     /// </remarks>
     // public const string EnumItemFormat = "<b>{0} - {1}</b>: {2}";
-    private static readonly string EnumItemFormat = "<b>{0} - {1}</b>: {2}";
+    private const string EnumItemFormat = "<b>{0} - {1}</b>: {2}";
 
     /// <summary>
     /// 格式化描述
