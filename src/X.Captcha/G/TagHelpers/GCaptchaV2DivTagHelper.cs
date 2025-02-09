@@ -51,26 +51,32 @@ public class GCaptchaV2DivTagHelper : TagHelper
         {
             output.Attributes.Add("data-badge", Badge);
         }
+
         if (!string.IsNullOrWhiteSpace(Theme))
         {
             output.Attributes.Add("data-theme", Theme);
         }
+
         if (!string.IsNullOrWhiteSpace(Size))
         {
             output.Attributes.Add("data-size", Size);
         }
+
         if (!string.IsNullOrWhiteSpace(TabIndex))
         {
             output.Attributes.Add("data-tabindex", TabIndex);
         }
+
         if (!string.IsNullOrWhiteSpace(Callback))
         {
             output.Attributes.Add("data-callback", Callback);
         }
+
         if (!string.IsNullOrWhiteSpace(ExpiredCallback))
         {
             output.Attributes.Add("data-expired-callback", ExpiredCallback);
         }
+
         if (!string.IsNullOrWhiteSpace(ErrorCallback))
         {
             output.Attributes.Add("data-error-callback", ErrorCallback);

@@ -61,9 +61,9 @@ public class AesFieldEncryptionProvider : IFieldEncryptionProvider
     }
 
     /// <inheritdoc />
-    public byte[] Encrypt(byte[] input)
+    public byte[] Encrypt(byte[] plainText)
     {
-        if (input is null || input.Length == 0)
+        if (plainText is null || plainText.Length == 0)
         {
             return null;
         }
@@ -73,7 +73,7 @@ public class AesFieldEncryptionProvider : IFieldEncryptionProvider
         using MemoryStream memoryStream = new();
         using CryptoStream cryptoStream = new(memoryStream, transform, CryptoStreamMode.Write);
 
-        cryptoStream.Write(input, 0, input.Length);
+        cryptoStream.Write(plainText, 0, plainText.Length);
         cryptoStream.FlushFinalBlock();
         memoryStream.Seek(0L, SeekOrigin.Begin);
 
@@ -97,16 +97,16 @@ public class AesFieldEncryptionProvider : IFieldEncryptionProvider
     }
 
     /// <inheritdoc />
-    public byte[] Decrypt(byte[] input)
+    public byte[] Decrypt(byte[] cipherText)
     {
-        if (input is null || input.Length == 0)
+        if (cipherText is null || cipherText.Length == 0)
         {
             return null;
         }
 
         using Aes aes = CreateCryptographyProvider(_key, _iv, _mode, _padding);
         using ICryptoTransform transform = aes.CreateDecryptor(aes.Key, aes.IV);
-        using MemoryStream memoryStream = new(input);
+        using MemoryStream memoryStream = new(cipherText);
         using CryptoStream cryptoStream = new(memoryStream, transform, CryptoStreamMode.Read);
 
         return StreamToBytes(cryptoStream);
@@ -152,14 +152,14 @@ public class AesFieldEncryptionProvider : IFieldEncryptionProvider
     /// Generates an AES key.
     /// </summary>
     /// <remarks>
-    /// The key size of the Aes encryption must be 128, 192 or 256 bits. 
+    /// The key size of the Aes encryption must be 128, 192 or 256 bits.
     /// Please check https://blogs.msdn.microsoft.com/shawnfa/2006/10/09/the-differences-between-rijndael-and-aes/ for more informations.
     /// </remarks>
     /// <param name="keySize">AES Key size</param>
     /// <returns></returns>
     public static AesKeyInfo GenerateKey(AesKeySize keySize)
     {
-        var aes = Aes.Create();
+        using var aes = Aes.Create();
 
         aes.KeySize = (int)keySize;
         aes.BlockSize = AesBlockSize;

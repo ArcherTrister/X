@@ -258,3 +258,4 @@ demo/X.Captcha.Demo/Logs/*
 **/wwwroot/libs/*
 
 deploy/nuget-api-key.txt
+.DS_Store

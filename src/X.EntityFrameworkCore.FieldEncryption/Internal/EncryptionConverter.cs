@@ -43,7 +43,7 @@ internal sealed class EncryptionConverter<TModel, TProvider> : ValueConverter<TM
             };
             return (TOutput)Convert.ChangeType(encryptedData, typeof(TOutput));
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return (TOutput)Convert.ChangeType(input, typeof(TOutput));
         }
@@ -61,7 +61,7 @@ internal sealed class EncryptionConverter<TModel, TProvider> : ValueConverter<TM
 
             return (TModel)Convert.ChangeType(decryptedData, typeof(TModel));
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             // 记录异常
             return (TModel)Convert.ChangeType(input, typeof(TModel));

@@ -29,7 +29,7 @@ public class HCaptchaV3ScriptJsTagHelper : TagHelper
 
         //myCallback is a user-defined function when Execute = false
         //hcaptcha.execute(widgetID, { async: true }).then(myCallback);
-        
+
         output.TagName = "script";
         output.TagMode = TagMode.StartTagAndEndTag;
 

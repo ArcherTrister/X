@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 using Masuit.Tools.Systems;
 
@@ -39,11 +38,20 @@ internal abstract class EnumHandleBase
         return string.Join(Environment.NewLine, enumDescriptions);
     }
 
-    /// <summary>
-    /// 枚举前缀
-    /// </summary>
-    // public const string EnumPrefix = "<p>枚举值：</p>";
-    private static readonly CompositeFormat EnumPrefix = CompositeFormat.Parse("<p>枚举值：</p>");
+    // /// <summary>
+    // /// 枚举前缀
+    // /// </summary>
+    // // public const string EnumPrefix = "<p>枚举值：</p>";
+    // private static readonly CompositeFormat EnumPrefix = CompositeFormat.Parse("<p>枚举值：</p>");
+
+    // /// <summary>
+    // /// 枚举项格式化
+    // /// </summary>
+    // /// <remarks>
+    // /// 0 : 值, 1 : 名称, 2 : 描述
+    // /// </remarks>
+    // // public const string EnumItemFormat = "<b>{0} - {1}</b>: {2}";
+    // private static readonly CompositeFormat EnumItemFormat = CompositeFormat.Parse("<b>{0} - {1}</b>: {2}");
 
     /// <summary>
     /// 枚举项格式化
@@ -52,7 +60,7 @@ internal abstract class EnumHandleBase
     /// 0 : 值, 1 : 名称, 2 : 描述
     /// </remarks>
     // public const string EnumItemFormat = "<b>{0} - {1}</b>: {2}";
-    private static readonly CompositeFormat EnumItemFormat = CompositeFormat.Parse("<b>{0} - {1}</b>: {2}");
+    private static readonly string EnumItemFormat = "<b>{0} - {1}</b>: {2}";
 
     /// <summary>
     /// 格式化描述
@@ -75,7 +83,7 @@ internal abstract class EnumHandleBase
         return sb.ToString();
         */
         var enums = Enum.GetNames(type);
-        var enumDescriptions = new List<string>();
+        var enumDescriptions = new List<string> { description };
         foreach (var item in enums)
         {
             var value = (Enum)Enum.Parse(type, item);

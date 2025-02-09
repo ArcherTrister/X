@@ -16,7 +16,7 @@ public static class StringExtensions
             return null;
         }
 
-        if (postFixes == null || !postFixes.Any())
+        if (postFixes == null || postFixes.Length == 0)
         {
             return str;
         }

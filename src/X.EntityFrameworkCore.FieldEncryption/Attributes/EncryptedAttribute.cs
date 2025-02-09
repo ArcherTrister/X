@@ -13,8 +13,6 @@ public sealed class EncryptedAttribute : Attribute
     /// <summary>
     /// Initializes a new instance of the <see cref="EncryptedAttribute"/> class.
     /// </summary>
-    /// The storage format.
-    /// </param>
     public EncryptedAttribute()
     {
     }

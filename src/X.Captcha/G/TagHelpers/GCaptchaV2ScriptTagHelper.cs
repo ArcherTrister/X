@@ -46,6 +46,7 @@ public class GCaptchaV2ScriptTagHelper : TagHelper
         {
             src += $"&onload={Onload}";
         }
+
         if (!string.IsNullOrWhiteSpace(Render))
         {
             src += $"&render={Render}";
@@ -57,6 +58,7 @@ public class GCaptchaV2ScriptTagHelper : TagHelper
         {
             output.Attributes.Add(new TagHelperAttribute("async"));
         }
+
         if (ScriptDefer)
         {
             output.Attributes.Add(new TagHelperAttribute("defer"));

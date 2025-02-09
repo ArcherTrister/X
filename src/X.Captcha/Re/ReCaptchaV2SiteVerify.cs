@@ -21,7 +21,6 @@ public class ReCaptchaV2SiteVerify : IReCaptchaV2SiteVerify
         _options = optionsAccessor.Get(CaptchaConsts.Re2);
         _client = clientFactory.CreateClient(CaptchaConsts.Re2);
         _client.BaseAddress = new Uri(_options.VerifyBaseUrl);
-
     }
 
     public async Task<ReCaptchaV2SiteVerifyResponse> Verify(CaptchaSiteVerifyRequest request)

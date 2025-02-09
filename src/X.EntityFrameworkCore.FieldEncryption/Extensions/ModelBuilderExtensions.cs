@@ -37,15 +37,9 @@ public static class ModelBuilderExtensions
     /// </returns>
     public static ModelBuilder UseEncryption(this ModelBuilder modelBuilder, IFieldEncryptionProvider fieldEncryptionProvider)
     {
-        if (modelBuilder is null)
-        {
-            throw new ArgumentNullException(nameof(modelBuilder));
-        }
+        ArgumentNullException.ThrowIfNull(modelBuilder);
 
-        if (fieldEncryptionProvider is null)
-        {
-            throw new ArgumentNullException(nameof(fieldEncryptionProvider));
-        }
+        ArgumentNullException.ThrowIfNull(fieldEncryptionProvider);
 
         foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
         {

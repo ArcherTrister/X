@@ -16,10 +16,7 @@ public static class PropertyBuilderExtensions
 {
     public static PropertyBuilder<TProperty> IsEncrypted<TProperty>(this PropertyBuilder<TProperty> builder)
     {
-        if (builder is null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        ArgumentNullException.ThrowIfNull(builder);
 
         builder.HasAnnotation(PropertyAnnotations.IsEncrypted, true);
 
@@ -28,10 +25,7 @@ public static class PropertyBuilderExtensions
 
     public static PropertyBuilder IsEncrypted(this PropertyBuilder builder)
     {
-        if (builder is null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        ArgumentNullException.ThrowIfNull(builder);
 
         builder.HasAnnotation(PropertyAnnotations.IsEncrypted, true);
 

@@ -21,7 +21,6 @@ public class GCaptchaV2SiteVerify : IGCaptchaV2SiteVerify
         _options = optionsAccessor.Get(CaptchaConsts.G2);
         _client = clientFactory.CreateClient(CaptchaConsts.G2);
         _client.BaseAddress = new Uri(_options.VerifyBaseUrl);
-
     }
 
     public async Task<GCaptchaV2SiteVerifyResponse> Verify(CaptchaSiteVerifyRequest request)

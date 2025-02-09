@@ -4,7 +4,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
     <RootNamespace>X.Captcha</RootNamespace>
     <PackageId>X.Captcha</PackageId>
     <Description>reCaptcha,hCaptcha,lCaptcha,gCaptcha for ASP NET Core</Description>

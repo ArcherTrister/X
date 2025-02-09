@@ -4,7 +4,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
     <RootNamespace>X.EntityFrameworkCore.FieldEncryption</RootNamespace>
     <PackageId>X.EntityFrameworkCore.FieldEncryption</PackageId>
     <Description>Field Encryption for EntityFrameworkCore</Description>
