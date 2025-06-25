@@ -1,4 +1,8 @@
-﻿namespace X.EntityFrameworkCore.FieldEncryption.Providers;
+﻿// Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+// See https://github.com/ArcherTrister/X
+// for more information concerning the license and the contributors participating to this project.
+
+namespace X.EntityFrameworkCore.FieldEncryption.Providers;
 
 /// <summary>
 /// Specifies the available AES Key sizes used for generating encryption keys and initialization vectors.
@@ -23,3 +27,4 @@ public enum AesKeySize : uint
     /// </summary>
     AES256Bits = 256
 }
+
