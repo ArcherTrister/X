@@ -69,7 +69,7 @@ jobs:
       - name: Push Nuget Packages
         uses: EasyDesk/action-nuget-push@v1.0.0
         with:
-            nuget-url: ${{ env.NUGET_REGISTRY }}
+            nuget-url: ${{ env.NUGET_SOURCE }}
             # The Nuget API key.
             nuget-api-key: ${{ secrets.NugetKey }}
             publish-dir: "./nupkg"
