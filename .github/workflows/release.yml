@@ -20,9 +20,9 @@ jobs:
 
       # 2. 设置 .NET SDK
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'  # 根据需要调整版本
+          dotnet-version: '9.x'  # 根据需要调整版本
 
       # 3. 提取版本标签（去除前缀 'v' 或 'V'）
       - name: Extract Version from Tag
@@ -40,7 +40,33 @@ jobs:
           echo "NuGet Version: $CLEAN_VERSION"
           echo "PACKAGE_VERSION=$CLEAN_VERSION" >> "$GITHUB_ENV"
       
-      # 4. 使用变量
-      - name: Use package version
+      # 4. 打印编译和发布配置信息
+      - name: Echo build and push config info
         run: |
+          dotnet --version
+          echo "Nuget registry: ${{ env.NUGET_REGISTRY }}"
           echo "Package version: $PACKAGE_VERSION"
+
+      # 5. 编译
+      - name: Build with dotnet
+        run: dotnet build --configuration Release -p:Version=${{ PACKAGE_VERSION }}
+      - name: Create Nuget Packages
+        uses: EasyDesk/action-dotnet-pack@v1.0.3
+        with:
+            project-names: |
+                src/X.Bff
+                src/X.Captcha
+                src/X.EntityFrameworkCore.FieldEncryption
+                src/X.Swashbuckle
+            # NuGet Package Version
+            package-version: ${{ PACKAGE_VERSION }}
+            output-dir: "./nupkg"
+
+      # 6. 发布
+      - name: Push Nuget Packages
+        uses: EasyDesk/action-nuget-push@v1.0.0
+        with:
+            nuget-url: ${{ env.NUGET_REGISTRY }}
+            # The Nuget API key.
+            nuget-api-key: ${{ secrets.NugetKey }}
+            publish-dir: "./nupkg"
