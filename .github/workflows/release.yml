@@ -56,7 +56,6 @@ jobs:
         uses: EasyDesk/action-dotnet-pack@v1.0.3
         with:
             project-names: |
-                src/X.Bff
                 src/X.Captcha
                 src/X.EntityFrameworkCore.FieldEncryption
                 src/X.Swashbuckle
