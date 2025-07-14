@@ -1,0 +1,42 @@
+name: NuGet Release
+
+on:
+  release:
+    types: [published]  # 仅在创建新发布时触发
+
+env:
+  NUGET_SOURCE: 'https://api.nuget.org/v3/index.json'  # NuGet 发布地址
+
+jobs:
+  build-and-publish:
+    name: Build and Publish NuGet Package
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 检出代码
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 需要获取历史记录以识别标签
+
+      # 2. 设置 .NET SDK
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'  # 根据需要调整版本
+
+      # 3. 提取版本标签（去除前缀 'v' 或 'V'）
+      - name: Extract Version from Tag
+        id: extract-version
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          CLEAN_VERSION=$(echo "$TAG_NAME" | sed 's/^v//i')  # 移除开头的 v/V
+          
+          # 验证版本号格式（必须符合 NuGet 要求）
+          if [[ ! "$CLEAN_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            echo "::error::Invalid version format: $TAG_NAME. Must be in SemVer format (e.g., v1.0.0)"
+            exit 1
+          fi
+          
+          echo "NuGet Version: $CLEAN_VERSION"
+          echo "PACKAGE_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV
+          echo "Package version: $PACKAGE_VERSION"
