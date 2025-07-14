@@ -27,4 +27,3 @@ public enum AesKeySize : uint
     /// </summary>
     AES256Bits = 256
 }
-
