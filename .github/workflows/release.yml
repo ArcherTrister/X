@@ -42,8 +42,6 @@ jobs:
       
       # 4. 打印编译和发布配置信息
       - name: Echo build and push config info
-        env:
-          PACKAGE_VERSION: ${{ steps.extract-version.outputs.PACKAGE_VERSION }}
         run: |
           dotnet --version
           echo "Nuget registry: ${{ env.NUGET_REGISTRY }}"
@@ -51,14 +49,10 @@ jobs:
 
       # 5. 编译
       - name: Build with dotnet
-        env:
-          PACKAGE_VERSION: ${{ steps.extract-version.outputs.PACKAGE_VERSION }}
         run: dotnet build --configuration Release -p:Version=$PACKAGE_VERSION
 
       # 6. 打包
       - name: Create Nuget Packages
-        env:
-          PACKAGE_VERSION: ${{ steps.extract-version.outputs.PACKAGE_VERSION }}
         uses: EasyDesk/action-dotnet-pack@v1.0.3
         with:
             project-names: |
