@@ -38,5 +38,9 @@ jobs:
           fi
           
           echo "NuGet Version: $CLEAN_VERSION"
-          echo "PACKAGE_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$CLEAN_VERSION" >> "$GITHUB_ENV"
+      
+      # 4. 使用变量
+      - name: Use package version
+        run: |
           echo "Package version: $PACKAGE_VERSION"
