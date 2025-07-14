@@ -39,6 +39,7 @@ jobs:
           
           echo "NuGet Version: $CLEAN_VERSION"
           echo "PACKAGE_VERSION=$CLEAN_VERSION" >> "$GITHUB_ENV"
+          echo "PACKAGE_VERSION=$CLEAN_VERSION" >> "$GITHUB_OUTPUT"
       
       # 4. 打印编译和发布配置信息
       - name: Echo build and push config info
