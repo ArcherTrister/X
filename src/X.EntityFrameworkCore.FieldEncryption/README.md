@@ -1,5 +1,7 @@
 ## Disclaimer
 
+The code and samples is built on top of [EntityFrameworkCore.DataEncryption](https://github.com/SoftFluent/EntityFrameworkCore.DataEncryption).
+
 <h4 align="center">:warning: This project is **not** affiliated with Microsoft. :warning:</h4><br>
 
 This library has been developed initialy for a personal project of mine which suits my use case. It provides a simple way to encrypt column data.
@@ -28,7 +30,7 @@ PM> Install-Package X.EntityFrameworkCore.FieldEncryption
 * Fluent configuration
 
 Depending on the initialization method you will use, you will need to decorate your `string` or `byte[]` properties of your entities with the `[Encrypted]` attribute or use the fluent `IsEncrypted()` method in your model configuration process.
-To use an encryption provider on your EF Core model, and enable the encryption on the `ModelBuilder`. 
+To use an encryption provider on your EF Core model, and enable the encryption on the `ModelBuilder`.
 
 ### Example with `AesFieldEncryptionProvider` and attribute
 
@@ -36,13 +38,13 @@ To use an encryption provider on your EF Core model, and enable the encryption o
 public class UserEntity
 {
 	public int Id { get; set; }
-	
+
 	[Encrypted]
 	public string Username { get; set; }
-	
+
 	[Encrypted]
 	public string Password { get; set; }
-	
+
 	public int Age { get; set; }
 }
 
@@ -50,18 +52,18 @@ public class DatabaseContext : DbContext
 {
 	// Get key and IV from a Base64String or any other ways.
 	// You can generate a key and IV using "AesFieldEncryptionProvider.GenerateKey()"
-	private readonly byte[] _encryptionKey = ...; 
+	private readonly byte[] _encryptionKey = ...;
 	private readonly byte[] _encryptionIV = ...;
 	private readonly IFieldEncryptionProvider _provider;
 
 	public DbSet<UserEntity> Users { get; set; }
-	
+
 	public DatabaseContext(DbContextOptions options)
 		: base(options)
 	{
 		_provider = new AesFieldEncryptionProvider(this._encryptionKey, this._encryptionIV);
 	}
-	
+
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		modelBuilder.UseEncryption(_provider);
@@ -85,23 +87,23 @@ public class DatabaseContext : DbContext
 {
 	// Get key and IV from a Base64String or any other ways.
 	// You can generate a key and IV using "AesFieldEncryptionProvider.GenerateKey()"
-	private readonly byte[] _encryptionKey = ...; 
+	private readonly byte[] _encryptionKey = ...;
 	private readonly byte[] _encryptionIV = ...;
 	private readonly IFieldEncryptionProvider _provider;
 
 	public DbSet<UserEntity> Users { get; set; }
-	
+
 	public DatabaseContext(DbContextOptions options)
 		: base(options)
 	{
 		_provider = new AesFieldEncryptionProvider(this._encryptionKey, this._encryptionIV);
 	}
-	
+
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		// Entities builder *MUST* be called before UseEncryption().
 		var userEntityBuilder = modelBuilder.Entity<UserEntity>();
-		
+
 		userEntityBuilder.Property(x => x.Username).IsRequired().IsEncrypted();
 		userEntityBuilder.Property(x => x.Password).IsRequired().IsEncrypted();
 
@@ -121,7 +123,7 @@ public class MyCustomEncryptionProvider : IFieldEncryptionProvider
 	{
 		// Encrypt the given input and return the encrypted data as a byte[].
 	}
-	
+
 	public byte[] Decrypt(byte[] input)
 	{
 		// Decrypt the given input and return the decrypted data as a byte[].

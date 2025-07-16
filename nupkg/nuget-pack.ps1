@@ -62,8 +62,9 @@ function Read-File {
 
 # List of projects
 $projects = (
+    "src/X.Bff",
     "src/X.Captcha",
-    "src/X.EntityFrameworkCore.DataEncryption",
+    "src/X.EntityFrameworkCore.FieldEncryption",
     "src/X.Swashbuckle"
 )
 
