@@ -1,4 +1,6 @@
 name: "Pack and push package with nuget"
+permissions:
+  contents: read
 
 on:
     workflow_dispatch:
