@@ -6,12 +6,9 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Duende.AccessTokenManagement;
 using Duende.AccessTokenManagement.OpenIdConnect;
-#if NET8_0_OR_GREATER
 using Duende.IdentityModel;
-#else
-using IdentityModel;
-#endif
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
@@ -69,20 +66,30 @@ public class OpenIdConnectCookieEventHandler(ILogger<OpenIdConnectCookieEventHan
 
             if (expiresAt <= DateTimeOffset.UtcNow)
             {
+#if NET10_0_OR_GREATER
+                var userTokenEndpointService =
+                    context.HttpContext.RequestServices.GetRequiredService<IOpenIdConnectUserTokenEndpoint>();
+                var userToken = await userTokenEndpointService.RefreshAccessTokenAsync(
+                    new UserRefreshToken(RefreshToken.Parse(refreshToken.Value), null), new UserTokenRequestParameters());
+                if (!userToken.Succeeded)
+                {
+                    logger.LogError("Refresh token is expired. Rejecting principal so that the user can re-authenticate");
+                    context.RejectPrincipal();
+                    return;
+                }
+#else
                 var userTokenEndpointService =
                     context.HttpContext.RequestServices.GetRequiredService<IUserTokenEndpointService>();
-#if NET7_0_OR_GREATER
                 var userToken = await userTokenEndpointService.RefreshAccessTokenAsync(
                     new UserToken { RefreshToken = refreshToken.Value }, new UserTokenRequestParameters());
-#else
-                var userToken = await userTokenEndpointService.RefreshAccessTokenAsync(refreshToken.Value, new UserTokenRequestParameters());
-#endif
                 if (userToken.IsError)
                 {
                     logger.LogError("Refresh token is expired. Rejecting principal so that the user can re-authenticate");
                     context.RejectPrincipal();
                     return;
                 }
+                //var userToken = await userTokenEndpointService.RefreshAccessTokenAsync(refreshToken.Value, new UserTokenRequestParameters());
+#endif
             }
         }
     }

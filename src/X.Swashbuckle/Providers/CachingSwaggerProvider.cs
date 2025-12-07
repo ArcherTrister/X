@@ -2,6 +2,15 @@
 // See https://github.com/ArcherTrister/X
 // for more information concerning the license and the contributors participating to this project.
 
+#if NET10_0_OR_GREATER
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+#else
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
@@ -11,6 +20,7 @@ using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
+#endif
 
 namespace X.Swashbuckle.Providers;
 

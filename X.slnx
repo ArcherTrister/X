@@ -1,0 +1,30 @@
+<Solution>
+  <Folder Name="/config/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".github/workflows/nexus.yml" />
+    <File Path=".github/workflows/nuget.yml" />
+    <File Path=".gitignore" />
+    <File Path="common.DotSettings" />
+    <File Path="common.props" />
+    <File Path="configureawait.props" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="stylecop.json" />
+    <File Path="Version.props" />
+    <File Path="X.DotSettings" />
+    <File Path="X.ruleset" />
+  </Folder>
+  <Folder Name="/demos/">
+    <Project Path="demos/X.Bff.Demo/X.Bff.Demo.csproj" />
+    <Project Path="demos/X.Captcha.Demo/X.Captcha.Demo.csproj" />
+    <Project Path="demos/X.EntityFrameworkCore.FieldEncryption.Demo/X.EntityFrameworkCore.FieldEncryption.Demo.csproj" />
+    <Project Path="demos/X.Swashbuckle.Demo/X.Swashbuckle.Demo.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/X.Bff/X.Bff.csproj" />
+    <Project Path="src/X.Captcha/X.Captcha.csproj" />
+    <Project Path="src/X.EntityFrameworkCore.FieldEncryption/X.EntityFrameworkCore.FieldEncryption.csproj" />
+    <Project Path="src/X.Swashbuckle/X.Swashbuckle.csproj" />
+  </Folder>
+</Solution>

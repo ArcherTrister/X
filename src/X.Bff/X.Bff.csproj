@@ -4,7 +4,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>$(DefaultTargetFramework)</TargetFrameworks>
     <RootNamespace>X.Bff</RootNamespace>
     <PackageId>X.Bff</PackageId>
     <Description>Backend for Frontend</Description>

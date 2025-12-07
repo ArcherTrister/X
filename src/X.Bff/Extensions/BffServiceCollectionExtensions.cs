@@ -3,6 +3,7 @@
 // for more information concerning the license and the contributors participating to this project.
 
 using System;
+using Duende.AccessTokenManagement.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Options;
