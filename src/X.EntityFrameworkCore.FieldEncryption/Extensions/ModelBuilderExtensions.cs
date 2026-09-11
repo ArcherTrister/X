@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 using X.EntityFrameworkCore.FieldEncryption;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.EntityFrameworkCore;
 
 /// <summary>
@@ -107,7 +108,7 @@ public static class ModelBuilderExtensions
 
             IAnnotation encryptedAnnotation = property.FindAnnotation(PropertyAnnotations.IsEncrypted);
 
-            if (encryptedAnnotation != null && (bool)encryptedAnnotation.Value == true)
+            if (encryptedAnnotation is { Value: not null } && (bool)encryptedAnnotation.Value)
             {
                 return new EncryptedProperty(property);
             }

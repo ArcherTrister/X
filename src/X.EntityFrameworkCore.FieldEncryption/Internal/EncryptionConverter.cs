@@ -41,6 +41,7 @@ internal sealed class EncryptionConverter<TModel, TProvider> : ValueConverter<TM
                 StorageFormat.Base64 => fieldEncryptionProvider.Encrypt(input.ToString()),
                 _ => fieldEncryptionProvider.Encrypt(input as byte[]),
             };
+            Console.WriteLine(encryptedData);
             return (TOutput)Convert.ChangeType(encryptedData, typeof(TOutput));
         }
         catch (Exception)
@@ -61,7 +62,7 @@ internal sealed class EncryptionConverter<TModel, TProvider> : ValueConverter<TM
 
             return (TModel)Convert.ChangeType(decryptedData, typeof(TModel));
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             // 记录异常
             return (TModel)Convert.ChangeType(input, typeof(TModel));

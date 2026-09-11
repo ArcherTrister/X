@@ -12,6 +12,8 @@ public class FluentUserEntity
 
     public string Email { get; set; }
 
+    public string PhoneNumber { get; set; }
+
     public string Notes { get; set; }
 
     public byte[] EncryptedData { get; set; }

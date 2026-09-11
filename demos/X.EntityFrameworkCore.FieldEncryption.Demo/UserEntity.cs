@@ -2,6 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+#if !USEX
+using SoftFluent.ComponentModel.DataAnnotations;
+#endif
+
 namespace X.EntityFrameworkCore.FieldEncryption.Demo;
 
 public class UserEntity
@@ -19,6 +23,10 @@ public class UserEntity
     [Required]
     [Encrypted]
     public string Email { get; set; }
+
+    [Required]
+    [Encrypted]
+    public string PhoneNumber { get; set; }
 
     [Required]
     [Encrypted]

@@ -1,9 +1,10 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-	  <CentralPackageVersionOverrideEnabled>true</CentralPackageVersionOverrideEnabled>
+    <CentralPackageVersionOverrideEnabled>true</CentralPackageVersionOverrideEnabled>
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="EntityFrameworkCore.DataEncryption" Version="8.0.0" />
     <PackageVersion Include="Masuit.Tools.Abstractions" Version="[2.4.0,)" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
     <PackageVersion Include="ConfigureAwait.Fody" Version="3.3.2" />
